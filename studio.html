@@ -148,6 +148,9 @@
   .proj .vis::before{content:"";position:absolute;inset:0;opacity:.9;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
   .proj:hover .vis::before{transform:scale(1.06)}
   .proj .glyph{position:relative;z-index:1;font-family:'Bricolage Grotesque';font-weight:800;font-size:64px;color:rgba(255,255,255,.92);mix-blend-mode:overlay}
+  .proj .vis .pimg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+  .proj:hover .vis .pimg{transform:scale(1.06)}
+  .proj .vis .scrim{position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(180deg,rgba(4,6,12,.12),rgba(4,6,12,.5))}
   .proj .vis .arr{position:absolute;top:18px;right:18px;z-index:2;width:42px;height:42px;border-radius:50%;background:rgba(4,6,12,.5);backdrop-filter:blur(8px);border:1px solid var(--glass-brd);display:flex;align-items:center;justify-content:center;transition:.3s}
   .proj:hover .vis .arr{background:var(--ink)}
   .proj .vis .arr svg{width:18px;height:18px;stroke:var(--ink);transition:.3s}
@@ -289,20 +292,20 @@
           <div class="eyebrow"><span class="idx">[02]</span> Избранные работы</div>
           <h2 class="h2">Недавние<br><em>проекты</em></h2>
         </div>
-        <p>Несколько недавних запусков студии — от стратегии до релиза.</p>
+        <p>Несколько недавних проектов. Кликни — откроется живая страница.</p>
       </div>
       <div class="work-grid">
-        <a class="proj p1 reveal" href="#contact">
-          <div class="vis"><span class="glyph">N</span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></span></div>
-          <div class="info"><div><h3>Nimbus</h3><div class="cat">SaaS-платформа · Веб + UI</div></div><div class="yr">2026</div></div>
+        <a class="proj p1 reveal" href="cafe.html" target="_blank" rel="noopener">
+          <div class="vis"><img class="pimg" src="cafe-interior.webp" alt="Кофейня «Зерно»" loading="lazy" onerror="this.remove()"><span class="scrim"></span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></span></div>
+          <div class="info"><div><h3>Кофейня «Зерно»</h3><div class="cat">Лендинг · Кафе</div></div><div class="yr">2026</div></div>
         </a>
-        <a class="proj p2 reveal" href="#contact" style="transition-delay:.08s">
-          <div class="vis"><span class="glyph">V</span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></span></div>
-          <div class="info"><div><h3>Volta</h3><div class="cat">Финтех-приложение · Брендинг</div></div><div class="yr">2026</div></div>
+        <a class="proj p2 reveal" href="fitness.html" target="_blank" rel="noopener" style="transition-delay:.08s">
+          <div class="vis"><img class="pimg" src="gym-wide.webp" alt="Фитнес-клуб FORGE" loading="lazy" onerror="this.remove()"><span class="scrim"></span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></span></div>
+          <div class="info"><div><h3>Фитнес-клуб FORGE</h3><div class="cat">Лендинг · Фитнес</div></div><div class="yr">2026</div></div>
         </a>
-        <a class="proj p3 reveal" href="#contact" style="transition-delay:.16s">
-          <div class="vis"><span class="glyph">O</span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></span></div>
-          <div class="info"><div><h3>Orbit</h3><div class="cat">Маркетплейс · Разработка</div></div><div class="yr">2025</div></div>
+        <a class="proj p3 reveal" href="primer_price.html" target="_blank" rel="noopener" style="transition-delay:.16s">
+          <div class="vis"><img class="pimg" src="lumiere-interior.webp" alt="Бьюти-студия Lumière" loading="lazy" onerror="this.remove()"><span class="scrim"></span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></span></div>
+          <div class="info"><div><h3>Бьюти-студия Lumière</h3><div class="cat">Прайс-лист · Бьюти</div></div><div class="yr">2025</div></div>
         </a>
         <a class="proj p4 reveal" href="#contact" style="transition-delay:.24s">
           <div class="h3b disp">Здесь может быть <em>ваш проект</em></div>
