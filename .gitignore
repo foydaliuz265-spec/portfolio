@@ -12,3 +12,6 @@ _*/
 *.tmp
 .DS_Store
 Thumbs.db
+
+# editor/agent
+.claude/
