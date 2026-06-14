@@ -1,0 +1,14 @@
+# unused heavy cafe PNGs (cafe.html uses .webp now)
+hero-coffee.png
+menu-coffee.png
+menu-pastry.png
+menu-beans.png
+menu-flatlay.png
+story-beans.png
+cafe-interior.png
+
+# temp / system
+_*/
+*.tmp
+.DS_Store
+Thumbs.db

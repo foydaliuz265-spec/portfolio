@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lumière — beauty studio · прайс-лист</title>
+<link rel="icon" href="fav-lumiere.svg">
+<meta name="description" content="Lumière — beauty studio в центре города: маникюр, брови, ресницы и волосы. Прайс-лист и запись.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Lumière">
+<meta property="og:title" content="Lumière — beauty studio">
+<meta property="og:description" content="Маникюр, брови, ресницы и волосы. Прайс-лист и онлайн-запись.">
+<meta property="og:url" content="https://luxe-mire.bond/primer_price.html">
+<meta property="og:image" content="https://luxe-mire.bond/lumiere-hero.webp">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ivory:#f4ede3; --ivory-2:#ebe1d3; --aubergine:#2c1c29; --aubergine-2:#5a4452;
+    --rose:#a9657f; --rose-soft:#c98ca3; --gold:#b08d57; --gold-2:#cbab78; --line:#d8c9b6; --paper:#fbf7f0;
+    --placeholder:linear-gradient(150deg,#e7d2cf 0%,#d9b9a0 45%,#cbab78 100%);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth;overflow-x:hidden}
+  body{font-family:'Jost',sans-serif;background:var(--ivory);color:var(--aubergine);-webkit-font-smoothing:antialiased;overflow-x:hidden;position:relative;line-height:1.6}
+  ::selection{background:var(--rose);color:var(--paper)}
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.5;mix-blend-mode:multiply;z-index:0;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E")}
+  .serif{font-family:'Cormorant Garamond',serif}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 32px;position:relative;z-index:1}
+  a{color:inherit;text-decoration:none}
+
+  @keyframes rise{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+  .rise{opacity:0;animation:rise .9s cubic-bezier(.2,.7,.2,1) forwards}
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){.rise{animation:none;opacity:1}.reveal{opacity:1;transform:none;transition:none}*{scroll-behavior:auto}}
+
+  /* soft image frame with graceful fallback */
+  .ph{position:relative;overflow:hidden;background:var(--placeholder)}
+  .ph::after{content:"";position:absolute;inset:0;background:radial-gradient(120% 120% at 30% 20%,rgba(251,247,240,.35),transparent 60%)}
+  .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1}
+  .ph .mono-mark{position:absolute;inset:0;z-index:0;display:flex;align-items:center;justify-content:center;
+    font-family:'Cormorant Garamond',serif;font-style:italic;font-size:64px;color:rgba(251,247,240,.5)}
+
+  /* ---------- top bar ---------- */
+  .topbar{display:flex;justify-content:space-between;align-items:center;padding:26px 0}
+  .topbar .lm{display:flex;align-items:center;gap:11px;font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:600;letter-spacing:1px}
+  .topbar .lm .mg{width:34px;height:34px;border:1.5px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;font-style:italic;font-size:18px;color:var(--gold)}
+  .topbar .cta{font-family:'Jost';font-size:13px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;color:var(--paper);background:var(--aubergine);padding:11px 22px;border-radius:40px;transition:.25s}
+  .topbar .cta:hover{background:var(--rose);transform:translateY(-2px)}
+
+  /* ---------- hero ---------- */
+  .hero{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;padding:40px 0 86px}
+  .hero .eyebrow{font-size:11.5px;font-weight:500;letter-spacing:5px;text-transform:uppercase;color:var(--rose);margin-bottom:24px;animation-delay:.05s}
+  .hero h1{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(54px,7vw,96px);line-height:.98;letter-spacing:.5px;animation-delay:.14s}
+  .hero h1 em{font-style:italic;color:var(--rose)}
+  .hero .lead{margin-top:26px;font-size:16px;font-weight:300;color:var(--aubergine-2);max-width:400px;animation-delay:.24s}
+  .hero .actions{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-top:34px;animation-delay:.32s}
+  .btn{font-family:'Jost';font-size:13.5px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;padding:14px 30px;border-radius:40px;transition:.25s;cursor:pointer;display:inline-block}
+  .btn-dark{background:var(--aubergine);color:var(--paper)}
+  .btn-dark:hover{background:var(--rose);transform:translateY(-2px)}
+  .btn-ghost{border:1px solid var(--line);color:var(--aubergine)}
+  .btn-ghost:hover{border-color:var(--rose);color:var(--rose)}
+  .hero-visual{position:relative;animation-delay:.2s}
+  .hero-visual .ph{height:540px;border-radius:230px 230px 18px 18px;border:1px solid var(--gold-2);box-shadow:0 40px 80px -34px rgba(44,28,41,.5)}
+  .hero-visual .badge{position:absolute;bottom:24px;left:-22px;z-index:3;background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:14px 20px;box-shadow:0 18px 40px -18px rgba(44,28,41,.4)}
+  .hero-visual .badge b{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:600;color:var(--gold);display:block;line-height:1}
+  .hero-visual .badge span{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--aubergine-2)}
+  .hero-visual .sprig{position:absolute;top:-14px;right:26px;width:54px;height:54px;color:var(--gold);z-index:3}
+
+  /* ---------- values strip ---------- */
+  .values{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--paper)}
+  .values .wrap{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap;padding:28px 32px}
+  .values .v{display:flex;align-items:center;gap:13px}
+  .values .v svg{width:24px;height:24px;stroke:var(--gold);flex:none}
+  .values .v b{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600;display:block}
+  .values .v span{font-size:12.5px;font-weight:300;color:var(--aubergine-2)}
+
+  /* ---------- price ---------- */
+  .price-sec{padding:90px 0 80px}
+  .sec-head{text-align:center;margin-bottom:54px}
+  .sec-head .ey{font-size:11.5px;font-weight:500;letter-spacing:5px;text-transform:uppercase;color:var(--rose)}
+  .sec-head h2{font-family:'Cormorant Garamond',serif;font-size:clamp(36px,5vw,56px);font-weight:500;margin-top:10px}
+  .sec-head h2::after{content:"";display:block;width:70px;height:1.5px;background:var(--gold);margin:18px auto 0}
+  .price-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px 56px}
+  .cat{break-inside:avoid}
+  .cat-title{display:flex;align-items:center;gap:14px;margin-bottom:14px}
+  .cat-title .ic{width:34px;height:34px;flex:none;border:1px solid var(--gold-2);border-radius:50%;display:flex;align-items:center;justify-content:center}
+  .cat-title .ic svg{width:19px;height:19px;stroke:var(--rose)}
+  .cat-title h3{font-family:'Cormorant Garamond',serif;font-size:25px;font-weight:600;letter-spacing:.5px}
+  .cat-title .tline{flex:1;height:1px;background:var(--line)}
+  .row{display:flex;align-items:baseline;padding:11px 0}
+  .row + .row{border-top:1px solid var(--ivory-2)}
+  .name{font-size:14.5px;font-weight:400}
+  .desc{display:block;font-size:12px;font-weight:300;color:var(--aubergine-2);margin-top:3px;font-style:italic;font-family:'Cormorant Garamond',serif;letter-spacing:.3px}
+  .dots{flex:1;margin:0 12px;border-bottom:1px dotted var(--line);transform:translateY(-4px)}
+  .pricev{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;white-space:nowrap;font-variant-numeric:tabular-nums}
+  .pricev span{font-size:13px;color:var(--rose);margin-left:2px}
+
+  /* ---------- atmosphere ---------- */
+  .atmo{position:relative}
+  .atmo .ph{height:440px}
+  .atmo .ph::before{content:"";position:absolute;inset:0;z-index:2;background:linear-gradient(90deg,rgba(44,28,41,.55),rgba(44,28,41,.15) 60%,transparent)}
+  .atmo .overlay{position:absolute;inset:0;z-index:3;display:flex;align-items:center}
+  .atmo .overlay .wrap{width:100%}
+  .atmo .overlay .ey{font-size:11.5px;font-weight:500;letter-spacing:5px;text-transform:uppercase;color:var(--gold-2)}
+  .atmo .overlay h2{font-family:'Cormorant Garamond',serif;font-size:clamp(30px,4.4vw,50px);font-weight:500;color:var(--paper);line-height:1.08;margin:12px 0 0;max-width:14ch}
+  .atmo .overlay h2 em{font-style:italic;color:var(--rose-soft)}
+
+  /* ---------- gallery ---------- */
+  .gallery-sec{padding:90px 0}
+  .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .gcard{text-align:center}
+  .gcard .ph{height:300px;border-radius:160px 160px 14px 14px;border:1px solid var(--gold-2);transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s}
+  .gcard:hover .ph{transform:translateY(-6px);box-shadow:0 30px 56px -30px rgba(44,28,41,.5)}
+  .gcard h4{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;margin-top:18px}
+  .gcard p{font-size:12.5px;font-weight:300;color:var(--aubergine-2);font-style:italic;font-family:'Cormorant Garamond',serif}
+
+  /* ---------- footer ---------- */
+  .foot{background:var(--aubergine);color:var(--ivory);padding:72px 0 40px;position:relative;z-index:1}
+  .foot .grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px;margin-bottom:46px}
+  .foot .lm{display:flex;align-items:center;gap:11px;font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:600;margin-bottom:16px}
+  .foot .lm .mg{width:38px;height:38px;border:1.5px solid var(--gold-2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-style:italic;font-size:20px;color:var(--gold-2)}
+  .foot p.intro{font-size:14px;font-weight:300;color:#cdbfc9;max-width:280px;line-height:1.7}
+  .foot h5{font-family:'Cormorant Garamond',serif;font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--gold-2);margin-bottom:16px}
+  .foot .ln{display:flex;align-items:center;gap:10px;font-size:14px;color:#dccfd6;padding:5px 0}
+  .foot .ln svg{width:16px;height:16px;stroke:var(--gold-2);flex:none}
+  .foot .bottom{border-top:1px solid rgba(216,201,182,.18);padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px}
+  .foot .bottom span{font-size:12.5px;color:#a9939f}
+  .foot .bottom .note{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:15px;color:var(--rose-soft)}
+
+  .demo-tag{position:fixed;top:14px;right:14px;z-index:60;background:var(--paper);border:1px solid var(--gold);color:var(--aubergine);font-size:11px;font-weight:500;letter-spacing:1px;padding:6px 12px;border-radius:20px}
+
+  @media(max-width:880px){
+    .hero{grid-template-columns:1fr;gap:36px}
+    .hero-visual{order:-1}.hero-visual .ph{height:440px}
+    .price-grid{grid-template-columns:1fr;gap:8px 0}
+    .foot .grid{grid-template-columns:1fr 1fr}
+  }
+  @media(max-width:600px){
+    .wrap{padding:0 22px}
+    .gallery{grid-template-columns:1fr;gap:24px}
+    .gcard .ph{height:320px}
+    .values .wrap{flex-direction:column;gap:18px}
+    .foot .grid{grid-template-columns:1fr}
+    .topbar .cta{display:none}
+  }
+</style>
+</head>
+<body>
+
+  <div class="wrap">
+    <div class="topbar rise">
+      <a class="lm" href="#top"><span class="mg">L</span>Lumière</a>
+      <a class="cta" href="#contact">Записаться</a>
+    </div>
+
+    <span id="top"></span>
+    <header class="hero">
+      <div>
+        <div class="eyebrow rise">Beauty Studio · с 2018 года</div>
+        <h1 class="rise">Красота<br>в <em>деталях</em></h1>
+        <p class="lead rise">Маникюр, брови, ресницы и волосы в уютной студии в центре города. Премиальные материалы и мастера с опытом от пяти лет.</p>
+        <div class="actions rise">
+          <a class="btn btn-dark" href="#price">Смотреть прайс</a>
+          <a class="btn btn-ghost" href="#contact">Как нас найти</a>
+        </div>
+      </div>
+      <div class="hero-visual rise">
+        <svg class="sprig" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 22V8M12 8c0-3 2-5 5-5 0 3-2 5-5 5zM12 12c0-3-2-5-5-5 0 3 2 5 5 5z"/></svg>
+        <div class="ph">
+          <span class="mono-mark">L</span>
+          <img src="lumiere-hero.webp" alt="Портрет: естественный макияж" onerror="this.remove()">
+        </div>
+        <div class="badge"><b>4.9 / 5</b><span>280+ отзывов</span></div>
+      </div>
+    </header>
+  </div>
+
+  <!-- VALUES -->
+  <div class="values reveal">
+    <div class="wrap">
+      <div class="v"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M12 2l2.5 6.5L21 9l-5 4 1.8 7-5.8-4-5.8 4L8 13 3 9l6.5-.5z"/></svg><div><b>Мастера от 5 лет</b><span>сертифицированные специалисты</span></div></div>
+      <div class="v"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M12 2a7 7 0 017 7c0 5-7 13-7 13S5 14 5 9a7 7 0 017-7z"/><circle cx="12" cy="9" r="2.5"/></svg><div><b>Стерильность</b><span>одноразовые расходники</span></div></div>
+      <div class="v"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M20 12a8 8 0 11-8-8M20 4l-8 8-3-3"/></svg><div><b>Премиум-материалы</b><span>проверенные бренды</span></div></div>
+    </div>
+  </div>
+
+  <!-- PRICE -->
+  <section class="price-sec" id="price">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="ey">Услуги и цены</div>
+        <h2 class="serif">Прайс-лист</h2>
+      </div>
+      <div class="price-grid">
+        <section class="cat reveal">
+          <div class="cat-title"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M9 11V6a3 3 0 0 1 6 0v5"/><path d="M5 11h14l-1 9H6z"/></svg></span><h3>Маникюр</h3><span class="tline"></span></div>
+          <div class="row"><span class="name">Маникюр классический<span class="desc">обработка и форма</span></span><span class="dots"></span><span class="pricev">1200<span>₽</span></span></div>
+          <div class="row"><span class="name">Маникюр + гель-лак<span class="desc">стойкость до 3 недель</span></span><span class="dots"></span><span class="pricev">2000<span>₽</span></span></div>
+          <div class="row"><span class="name">Дизайн ногтей<span class="desc">за один ноготь</span></span><span class="dots"></span><span class="pricev">150<span>₽</span></span></div>
+          <div class="row"><span class="name">Снятие покрытия</span><span class="dots"></span><span class="pricev">400<span>₽</span></span></div>
+        </section>
+
+        <section class="cat reveal" style="transition-delay:.08s">
+          <div class="cat-title"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></span><h3>Брови и ресницы</h3><span class="tline"></span></div>
+          <div class="row"><span class="name">Коррекция бровей<span class="desc">пинцет / нить</span></span><span class="dots"></span><span class="pricev">700<span>₽</span></span></div>
+          <div class="row"><span class="name">Окрашивание бровей<span class="desc">краска / хна</span></span><span class="dots"></span><span class="pricev">900<span>₽</span></span></div>
+          <div class="row"><span class="name">Ламинирование ресниц</span><span class="dots"></span><span class="pricev">2500<span>₽</span></span></div>
+        </section>
+
+        <section class="cat reveal" style="transition-delay:.16s">
+          <div class="cat-title"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4L8.12 15.88M14.47 14.48L20 20M8.12 8.12L12 12"/></svg></span><h3>Стрижка и укладка</h3><span class="tline"></span></div>
+          <div class="row"><span class="name">Женская стрижка</span><span class="dots"></span><span class="pricev">1800<span>₽</span></span></div>
+          <div class="row"><span class="name">Укладка / локоны</span><span class="dots"></span><span class="pricev">1500<span>₽</span></span></div>
+          <div class="row"><span class="name">Окрашивание в один тон<span class="desc">зависит от длины волос</span></span><span class="dots"></span><span class="pricev">от 3500<span>₽</span></span></div>
+        </section>
+
+        <section class="cat reveal" style="transition-delay:.24s">
+          <div class="cat-title"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M12 2v6M12 22v-4M5 9l3 2M19 9l-3 2M5 16l3-2M19 16l-3-2"/><circle cx="12" cy="12" r="2.5"/></svg></span><h3>Уход за лицом</h3><span class="tline"></span></div>
+          <div class="row"><span class="name">Чистка лица<span class="desc">комбинированная</span></span><span class="dots"></span><span class="pricev">2800<span>₽</span></span></div>
+          <div class="row"><span class="name">Уходовая процедура<span class="desc">по типу кожи</span></span><span class="dots"></span><span class="pricev">2200<span>₽</span></span></div>
+          <div class="row"><span class="name">Массаж лица</span><span class="dots"></span><span class="pricev">1600<span>₽</span></span></div>
+        </section>
+      </div>
+    </div>
+  </section>
+
+  <!-- ATMOSPHERE -->
+  <section class="atmo reveal">
+    <div class="ph" style="height:440px">
+      <span class="mono-mark">L</span>
+      <img src="lumiere-interior.webp" alt="Интерьер студии Lumière" onerror="this.remove()">
+    </div>
+    <div class="overlay">
+      <div class="wrap">
+        <div class="ey">Наша студия</div>
+        <h2 class="serif">Тихое место, где о вас <em>позаботятся</em></h2>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="gallery-sec" id="gallery">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="ey">Наши работы</div>
+        <h2 class="serif">Галерея</h2>
+      </div>
+      <div class="gallery">
+        <div class="gcard reveal">
+          <div class="ph"><span class="mono-mark">L</span><img src="lumiere-nails.webp" alt="Маникюр с гель-лаком" onerror="this.remove()"></div>
+          <h4>Маникюр</h4><p>аккуратная форма и стойкое покрытие</p>
+        </div>
+        <div class="gcard reveal" style="transition-delay:.1s">
+          <div class="ph"><span class="mono-mark">L</span><img src="lumiere-brows.webp" alt="Оформление бровей" onerror="this.remove()"></div>
+          <h4>Брови и ресницы</h4><p>естественная форма по типу лица</p>
+        </div>
+        <div class="gcard reveal" style="transition-delay:.2s">
+          <div class="ph"><span class="mono-mark">L</span><img src="lumiere-hair.webp" alt="Укладка волос" onerror="this.remove()"></div>
+          <h4>Волосы</h4><p>стрижка, укладка и окрашивание</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER / CONTACT -->
+  <footer class="foot" id="contact">
+    <div class="wrap">
+      <div class="grid">
+        <div>
+          <div class="lm"><span class="mg">L</span>Lumière</div>
+          <p class="intro">Beauty studio в центре города. Запись по телефону или в Telegram.</p>
+        </div>
+        <div>
+          <h5>Контакты</h5>
+          <div class="ln"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.4 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>+7 (900) 000-00-00</div>
+          <div class="ln"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>@lumiere.studio</div>
+        </div>
+        <div>
+          <h5>Адрес и часы</h5>
+          <div class="ln"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>ул. Примерная, 1</div>
+          <div class="ln"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Пн–Вс · 10:00–21:00</div>
+        </div>
+      </div>
+      <div class="bottom">
+        <span>© 2026 Lumière · демо для портфолио</span>
+        <span class="note">Запись открыта</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.14});
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  </script>
+</body>
+</html>
