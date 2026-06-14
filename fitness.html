@@ -532,6 +532,13 @@
     // scroll reveal
     const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.14});
     document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+    // seamless marquee: clone content to always exceed viewport (no gap on wide screens)
+    {
+      const mq=[...document.querySelectorAll('.marquee__track, .mq__track')].map(t=>({t,unit:t.innerHTML}));
+      const fill=()=>mq.forEach(({t,unit})=>{let b=unit,g=0;t.innerHTML=b;while(t.scrollWidth<window.innerWidth&&g++<24){b+=unit;t.innerHTML=b}t.innerHTML=b+b});
+      fill(); let rt; window.addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(fill,200)});
+    }
     // sticky nav border
     const nb=document.getElementById('navbar');
     const onScroll=()=>nb.classList.toggle('stuck',window.scrollY>20);

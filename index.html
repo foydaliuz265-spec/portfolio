@@ -214,6 +214,13 @@
     const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.18});
     document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
+    // seamless marquee: clone content to always exceed viewport (no gap on wide screens)
+    {
+      const mq=[...document.querySelectorAll('.marquee__track, .mq__track')].map(t=>({t,unit:t.innerHTML}));
+      const fill=()=>mq.forEach(({t,unit})=>{let b=unit,g=0;t.innerHTML=b;while(t.scrollWidth<window.innerWidth&&g++<24){b+=unit;t.innerHTML=b}t.innerHTML=b+b});
+      fill(); let rt; window.addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(fill,200)});
+    }
+
     const bar=document.getElementById('progress');
     const onScroll=()=>{const h=document.documentElement;const max=h.scrollHeight-h.clientHeight;bar.style.width=(max>0?(h.scrollTop/max)*100:0)+'%'};
     onScroll();addEventListener('scroll',onScroll,{passive:true});addEventListener('resize',onScroll);
