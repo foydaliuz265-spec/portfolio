@@ -66,17 +66,18 @@
   .mobile-menu a .mono{display:block;font-size:11px;color:var(--muted);margin-top:3px}
 
   /* ---------- hero ---------- */
-  .hero{padding:58px 0 0}
-  .hero-top{display:grid;grid-template-columns:1.62fr .38fr;gap:50px;align-items:end;padding-bottom:48px}
-  .hero h1{font-family:'Unbounded';font-weight:800;font-size:clamp(38px,6.6vw,100px);line-height:.96;letter-spacing:-.025em}
+  .hero{padding:56px 0 0}
+  .hero-top{padding-bottom:46px}
+  .hero h1{font-family:'Unbounded';font-weight:800;font-size:clamp(36px,6.1vw,88px);line-height:.97;letter-spacing:-.025em}
   .hero h1 .acc{color:var(--accent)}
-  .hero h1 small{display:block;font-family:'Manrope';font-weight:400;font-size:clamp(15px,1.4vw,19px);letter-spacing:0;color:var(--muted);margin-top:26px;max-width:40ch;line-height:1.6}
-  .spec{align-self:end}
-  .spec .row{display:flex;justify-content:space-between;gap:16px;padding:11px 0;border-top:1px solid var(--line);font-family:'JetBrains Mono';font-size:11.5px;letter-spacing:.04em;color:var(--muted)}
-  .spec .row b{color:var(--ink);font-weight:500;text-align:right}
-  .spec .row:last-child{border-bottom:1px solid var(--line)}
-  .hero-actions{display:flex;gap:0;margin-top:26px}
-  .hero-actions .btn{flex:1;justify-content:center}
+  .hero h1 small{display:block;font-family:'Manrope';font-weight:400;font-size:clamp(15px,1.4vw,18px);letter-spacing:0;color:var(--muted);margin-top:24px;max-width:48ch;line-height:1.6}
+  .hero-meta{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);margin-top:42px}
+  .hero-meta .m{padding:16px 20px 18px 0;border-right:1px solid var(--line)}
+  .hero-meta .m:last-child{border-right:none}
+  .hero-meta .m span{display:block;font-family:'JetBrains Mono';font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:7px}
+  .hero-meta .m b{font-family:'JetBrains Mono';font-size:13.5px;font-weight:500;color:var(--ink);letter-spacing:.02em}
+  .hero-actions{display:flex;gap:0;margin-top:28px}
+  .hero-actions .btn{min-width:170px;justify-content:center}
   .hero-actions .btn+.btn{border-left:none}
 
   /* film strip — full bleed raw video */
@@ -195,7 +196,8 @@
     .wrap{padding:0 20px}.nav-links{display:none}.nav-cta{display:none}
     .nav-toggle{display:flex}.mobile-menu{display:flex}.mobile-menu.open{max-height:340px}
     .shead .note{display:none}.steps{grid-template-columns:1fr}.stats{grid-template-columns:1fr}
-    .hero-actions{flex-direction:column}.hero-actions .btn+.btn{border-left:1px solid var(--ink);border-top:none}
+    .hero-meta{grid-template-columns:1fr 1fr}.hero-meta .m:nth-child(2){border-right:none}
+    .hero-actions{flex-direction:column}.hero-actions .btn{min-width:0}.hero-actions .btn+.btn{border-left:1px solid var(--ink);border-top:none}
     .cta-actions{flex-direction:column}.cta-actions .btn+.btn{border-left:1px solid var(--ink);border-top:none}
   }
 </style>
@@ -227,18 +229,18 @@
   <header class="hero">
     <div class="wrap">
       <div class="hero-top">
-        <h1 class="rise">Дизайн<br>и&nbsp;<span class="acc">инженерия</span><br>цифровых&nbsp;продуктов
+        <h1 class="rise">Дизайн<br>и <span class="acc">инженерия</span><br>цифровых продуктов
           <small>Студия полного цикла: исследование, интерфейсы, код и моушн. Делаем продукты, которые работают и выглядят как надо.</small>
         </h1>
-        <div class="spec rise" style="animation-delay:.12s">
-          <div class="row"><span>Тип</span><b>Digital studio</b></div>
-          <div class="row"><span>Локация</span><b>Москва / remote</b></div>
-          <div class="row"><span>С</span><b>2018</b></div>
-          <div class="row"><span>Стек</span><b>Дизайн · Код · 3D</b></div>
-          <div class="hero-actions">
-            <a class="btn fill" href="#work">Работы</a>
-            <a class="btn" href="#contact">Контакт</a>
-          </div>
+        <div class="hero-meta rise" style="animation-delay:.1s">
+          <div class="m"><span>Тип</span><b>Digital studio</b></div>
+          <div class="m"><span>Локация</span><b>Москва / remote</b></div>
+          <div class="m"><span>С&nbsp;года</span><b>2018</b></div>
+          <div class="m"><span>Стек</span><b>Дизайн · Код · 3D</b></div>
+        </div>
+        <div class="hero-actions rise" style="animation-delay:.16s">
+          <a class="btn fill" href="#work">Смотреть работы</a>
+          <a class="btn" href="#contact">Контакт</a>
         </div>
       </div>
     </div>
