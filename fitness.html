@@ -16,227 +16,205 @@
 <link rel="stylesheet" href="fonts.css">
 <style>
   :root{
-    --bg:#0b0d0c; --panel:#141816; --panel-2:#1b201d; --orange:#f97316; --orange-d:#ea670c; --green:#22c55e;
-    --text:#f5f7f4; --muted:#8b938c; --line:rgba(255,255,255,.09); --line-2:rgba(255,255,255,.16);
+    --bg:#0a0b0a; --black:#050605; --ink:#f4f5f1; --muted:#888d86; --faint:#5c615b;
+    --orange:#ff6a16; --green:#2bd46a; --line:rgba(255,255,255,.13); --line2:rgba(255,255,255,.3);
   }
   *{margin:0;padding:0;box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  body{font-family:'Rubik',sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  html{scroll-behavior:smooth;overflow-x:hidden}
+  body{font-family:'Rubik',sans-serif;background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased;overflow-x:hidden}
   .cond{font-family:'Oswald',sans-serif}
-  .wrap{max-width:1280px;margin:0 auto;padding:0 28px}
-  a{color:inherit}
-  ::selection{background:var(--orange);color:#0b0d0c}
-  /* faint grain */
-  body::after{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.4;mix-blend-mode:overlay;
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E")}
-  .wrap,nav,section,footer{position:relative;z-index:1}
+  a{color:inherit;text-decoration:none}
+  ::selection{background:var(--orange);color:#000}
+  img{display:block}
+  .wrap{max-width:1320px;margin:0 auto;padding:0 28px}
+  .mono{font-family:'Oswald',sans-serif;letter-spacing:.14em;text-transform:uppercase}
+  .kick{font-family:'Oswald';font-weight:600;font-size:13px;letter-spacing:.24em;text-transform:uppercase;color:var(--orange)}
 
-  @keyframes rise{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+  @keyframes rise{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:translateY(0)}}
   .rise{opacity:0;animation:rise .8s cubic-bezier(.2,.7,.2,1) forwards}
-  .reveal{opacity:0;transform:translateY(32px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
   .reveal.in{opacity:1;transform:none}
-  @media(prefers-reduced-motion:reduce){
-    .rise{animation:none;opacity:1}.stripe,.barbell,.mq__track{animation:none}
-    .reveal{opacity:1;transform:none;transition:none}
-    .showcase{background-attachment:scroll}
-    *{scroll-behavior:auto}
-  }
-  /* keyboard focus visibility */
-  a:focus-visible,button:focus-visible{outline:2.5px solid var(--orange);outline-offset:3px;border-radius:2px}
+  @media(prefers-reduced-motion:reduce){.rise{animation:none;opacity:1}.reveal{opacity:1;transform:none;transition:none}.mq__track,.stripe{animation:none}.showcase{background-attachment:scroll}*{scroll-behavior:auto}}
+
+  /* hard skewed button */
+  .btn{display:inline-flex;align-items:center;gap:9px;font-family:'Oswald';font-weight:700;font-size:16px;letter-spacing:.06em;text-transform:uppercase;padding:15px 30px;background:var(--orange);color:#000;cursor:pointer;transition:.18s;clip-path:polygon(7% 0,100% 0,93% 100%,0 100%);border:none}
+  .btn:hover{background:var(--green);transform:translateX(3px)}
+  .btn.ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 2px var(--line2);clip-path:none}
+  .btn.ghost:hover{background:var(--ink);color:#000;transform:translateX(3px)}
+  a:focus-visible,button:focus-visible{outline:2.5px solid var(--orange);outline-offset:3px}
   a,button{touch-action:manipulation}
 
   /* ---------- nav ---------- */
-  .nav-outer{position:sticky;top:0;z-index:40;background:rgba(11,13,12,.72);backdrop-filter:blur(12px);border-bottom:1px solid transparent;transition:border-color .3s,background .3s}
-  .nav-outer.stuck{border-color:var(--line);background:rgba(11,13,12,.92)}
-  nav{display:flex;align-items:center;gap:32px;padding:18px 0}
-  .logo{font-family:'Oswald';font-weight:900;font-size:30px;letter-spacing:2px;display:flex;align-items:center;gap:10px;text-transform:uppercase;text-decoration:none}
-  .logo .m{width:34px;height:34px;background:var(--orange);transform:skewX(-8deg);display:flex;align-items:center;justify-content:center}
-  .logo .m svg{width:20px;height:20px;stroke:#0b0d0c;stroke-width:2.6}
-  .nav-links{display:flex;gap:30px;margin-left:14px}
-  .nav-links a{color:#c4c9c4;text-decoration:none;font-family:'Oswald';font-weight:600;font-size:18px;text-transform:uppercase;letter-spacing:.5px;transition:.2s;position:relative}
-  .nav-links a::after{content:"";position:absolute;left:0;right:100%;bottom:-4px;height:2px;background:var(--orange);transition:right .25s cubic-bezier(.2,.7,.2,1)}
-  .nav-links a:hover{color:var(--text)}
-  .nav-links a:hover::after{right:0}
-  .btn{background:var(--orange);color:#0b0d0c;border:none;font-family:'Oswald';font-weight:800;font-size:17px;letter-spacing:1px;text-transform:uppercase;
-    padding:13px 28px;cursor:pointer;transition:.2s;text-decoration:none;display:inline-block;clip-path:polygon(6% 0,100% 0,94% 100%,0 100%)}
-  .btn:hover{background:var(--green);transform:translateY(-2px)}
-  .nav .btn{margin-left:auto}
-  /* mobile menu */
-  .nav-toggle{display:none;flex-direction:column;gap:5px;width:44px;height:44px;align-items:center;justify-content:center;background:transparent;border:none;cursor:pointer;padding:0}
-  .nav-toggle span{display:block;width:26px;height:2.5px;background:var(--text);border-radius:2px;transition:transform .3s,opacity .2s}
+  .nav-outer{position:sticky;top:0;z-index:60;background:var(--black);border-bottom:2px solid var(--ink)}
+  nav{display:flex;align-items:center;gap:30px;height:64px}
+  .logo{font-family:'Oswald';font-weight:900;font-size:28px;letter-spacing:.04em;text-transform:uppercase;display:flex;align-items:center;gap:10px}
+  .logo .m{width:30px;height:30px;background:var(--orange);transform:skewX(-9deg);display:flex;align-items:center;justify-content:center}
+  .logo .m svg{width:18px;height:18px;stroke:#000;stroke-width:2.6}
+  .nav-links{display:flex;gap:2px;margin-left:8px}
+  .nav-links a{font-family:'Oswald';font-weight:600;font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:8px 14px;transition:.18s}
+  .nav-links a:hover{color:var(--ink)}
+  .nav .btn{margin-left:auto;padding:11px 22px;font-size:14px}
+  .nav-toggle{display:none;flex-direction:column;gap:5px;width:42px;height:42px;align-items:flex-end;justify-content:center;background:none;border:none;cursor:pointer}
+  .nav-toggle span{display:block;width:26px;height:2.5px;background:var(--ink);transition:.3s}
   .nav-toggle.active span:nth-child(1){transform:translateY(7.5px) rotate(45deg)}
   .nav-toggle.active span:nth-child(2){opacity:0}
-  .nav-toggle.active span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg)}
-  .mobile-menu{display:none;flex-direction:column;overflow:hidden;max-height:0;transition:max-height .35s cubic-bezier(.2,.7,.2,1)}
-  .mobile-menu a{font-family:'Oswald';font-weight:700;font-size:22px;text-transform:uppercase;letter-spacing:.5px;color:#c4c9c4;text-decoration:none;padding:15px 4px;border-bottom:1px solid var(--line);transition:color .2s,padding .2s}
-  .mobile-menu a:hover{color:var(--orange);padding-left:10px}
-  .mobile-menu .mm-cta{margin-top:18px;text-align:center;color:#0b0d0c;border-bottom:none;padding:15px}
-  .nav-outer.menu-open{background:rgba(11,13,12,.97);backdrop-filter:blur(12px);border-color:var(--line)}
+  .nav-toggle.active span:nth-child(3){width:26px;transform:translateY(-7.5px) rotate(-45deg)}
+  .mobile-menu{display:none;flex-direction:column;overflow:hidden;max-height:0;transition:max-height .35s ease;background:var(--black)}
+  .mobile-menu a{font-family:'Oswald';font-weight:700;font-size:24px;text-transform:uppercase;letter-spacing:.04em;color:var(--ink);padding:16px 0;border-bottom:1px solid var(--line)}
+  .mobile-menu a:hover{color:var(--orange);padding-left:8px}
 
-  /* ---------- hero ---------- */
-  .hero{position:relative;padding:54px 0 40px;overflow:hidden}
-  .stripe{position:absolute;top:0;bottom:0;left:0;width:200%;background:repeating-linear-gradient(115deg,transparent 0 60px,rgba(249,115,22,.045) 60px 120px);animation:slidebg 20s linear infinite;z-index:0}
-  @keyframes slidebg{to{transform:translateX(-60px)}}
-  .hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:center}
-  .tag{display:inline-flex;align-items:center;gap:9px;border:1.5px solid var(--orange);color:var(--orange);font-family:'Oswald';font-weight:700;font-size:15px;letter-spacing:2px;text-transform:uppercase;padding:8px 16px;animation-delay:.04s}
-  .hero h1{font-family:'Oswald';font-weight:900;font-size:clamp(56px,11vw,140px);line-height:.84;text-transform:uppercase;letter-spacing:-.5px;margin:22px 0 18px}
-  .hero h1 .o{color:transparent;-webkit-text-stroke:2.5px var(--orange)}
-  .hero h1 .g{color:var(--green)}
-  .hero h1 .l1{animation-delay:.12s}.hero h1 .l2{animation-delay:.2s}
-  .hero p{color:var(--muted);font-size:17px;line-height:1.6;max-width:440px;margin-bottom:30px;animation-delay:.3s}
-  .hero-actions{display:flex;gap:14px;align-items:center;flex-wrap:wrap;animation-delay:.36s}
-  .ghost{background:transparent;color:#fff;border:1.5px solid var(--line-2);padding:13px 26px;font-family:'Oswald';font-weight:700;font-size:17px;text-transform:uppercase;letter-spacing:1px;cursor:pointer;transition:.2s}
-  .ghost:hover{border-color:var(--text);background:rgba(255,255,255,.04)}
-  .hstats{display:flex;gap:0;margin-top:42px;border-top:1.5px solid var(--line);animation-delay:.44s}
-  .hstats div{padding:20px 28px 0 0;margin-right:28px;border-right:1.5px solid var(--line)}
-  .hstats div:last-child{border:none}
-  .hstats .n{font-family:'Oswald';font-size:46px;font-weight:900;line-height:1;color:var(--orange)}
-  .hstats .l{color:var(--muted);font-size:13px;text-transform:uppercase;letter-spacing:1px;margin-top:4px}
+  /* ---------- hero (poster) ---------- */
+  .hero{position:relative;border-bottom:2px solid var(--ink);overflow:hidden}
+  .hero-grid{display:grid;grid-template-columns:1.15fr .85fr}
+  .hero-l{padding:60px 50px 46px 0;display:flex;flex-direction:column;justify-content:flex-end}
+  .hero h1{font-family:'Oswald';font-weight:700;font-size:clamp(54px,9.5vw,150px);line-height:.82;text-transform:uppercase;letter-spacing:-.01em}
+  .hero h1 .o{-webkit-text-stroke:2.5px var(--orange);color:transparent}
+  .hero h1 .g{color:var(--orange)}
+  .hero p{color:var(--muted);font-size:17px;line-height:1.55;max-width:430px;margin:26px 0 30px}
+  .hero-actions{display:flex;gap:14px;flex-wrap:wrap}
+  .hero-spec{display:flex;gap:0;margin-top:40px;border-top:2px solid var(--ink)}
+  .hero-spec div{flex:1;padding:18px 18px 0 0;border-right:1px solid var(--line)}
+  .hero-spec div:last-child{border-right:none}
+  .hero-spec .n{font-family:'Oswald';font-weight:700;font-size:clamp(28px,3vw,42px);line-height:1;color:var(--orange)}
+  .hero-spec .l{font-family:'Oswald';font-weight:500;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:8px}
+  .hero-r{position:relative;border-left:2px solid var(--ink);min-height:520px;overflow:hidden;background:#111}
+  .hero-r img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 22%}
+  .hero-r .num{position:absolute;top:14px;left:18px;z-index:2;font-family:'Oswald';font-weight:900;font-size:64px;color:var(--ink);mix-blend-mode:difference;line-height:1}
+  .hero-r .badge{position:absolute;bottom:0;right:0;z-index:2;background:var(--orange);color:#000;font-family:'Oswald';font-weight:700;padding:14px 22px;text-transform:uppercase;clip-path:polygon(12% 0,100% 0,100% 100%,0 100%)}
+  .hero-r .badge b{display:block;font-size:30px;line-height:1}
+  .hero-r .badge span{font-size:12px;letter-spacing:.06em}
 
-  .hero-visual{position:relative;height:480px;background:linear-gradient(160deg,#1b211d,#0b0d0c);overflow:hidden;clip-path:polygon(8% 0,100% 0,92% 100%,0 100%);animation-delay:.24s}
-  .hero-visual::before{content:"";position:absolute;width:300px;height:300px;border-radius:50%;background:var(--orange);filter:blur(130px);opacity:.32;top:28%;left:28%;z-index:0}
-  .hv-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 25%;z-index:0}
-  .hero-visual::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(11,13,12,.12) 0%,rgba(11,13,12,.15) 55%,rgba(11,13,12,.55) 100%)}
-  .num-bg{position:absolute;bottom:-30px;right:0;font-family:'Oswald';font-weight:900;font-size:280px;line-height:.7;color:rgba(255,255,255,.04)}
-  .barbell{position:absolute;top:48%;left:50%;transform:translate(-50%,-50%) rotate(-16deg);animation:lift 4s ease-in-out infinite}
-  @keyframes lift{50%{transform:translate(-50%,-58%) rotate(-16deg)}}
-  .barbell .bar{width:310px;height:13px;background:linear-gradient(90deg,#444,#bbb,#444);border-radius:7px;position:relative}
-  .barbell .plate{position:absolute;top:50%;transform:translateY(-50%);width:36px;height:100px;background:#1c1f1d;border:3px solid var(--orange);border-radius:8px}
-  .barbell .plate.l1{left:4px}.barbell .plate.l2{left:46px;height:76px;border-color:var(--green)}
-  .barbell .plate.r1{right:4px}.barbell .plate.r2{right:46px;height:76px;border-color:var(--green)}
-  .vfloat{position:absolute;background:rgba(20,24,22,.9);border:1.5px solid var(--line-2);padding:14px 17px;display:flex;gap:12px;align-items:center;z-index:2;clip-path:polygon(6% 0,100% 0,94% 100%,0 100%)}
-  .vfloat.a{top:26px;right:24px}.vfloat.b{bottom:30px;left:20px}
-  .vfloat .ic{width:38px;height:38px;background:rgba(249,115,22,.18);display:flex;align-items:center;justify-content:center}
-  .vfloat .ic svg{width:19px;height:19px;stroke:var(--orange)}
-  .vfloat b{display:block;font-family:'Oswald';font-size:20px;font-weight:800}.vfloat span{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
-
-  /* ---------- kinetic marquee ---------- */
-  .mq{border-top:1.5px solid var(--line);border-bottom:1.5px solid var(--line);overflow:hidden;padding:16px 0;background:var(--orange)}
-  .mq__track{display:flex;width:max-content;animation:slide 22s linear infinite}
-  .mq__track span{font-family:'Oswald';font-weight:900;font-size:30px;letter-spacing:1px;text-transform:uppercase;color:#0b0d0c;padding:0 26px;display:flex;align-items:center;gap:26px;white-space:nowrap}
-  .mq__track span::after{content:"";width:11px;height:11px;background:#0b0d0c;transform:rotate(45deg)}
+  /* ---------- marquee ---------- */
+  .mq{background:var(--orange);overflow:hidden;padding:13px 0;border-bottom:2px solid var(--ink)}
+  .mq__track{display:flex;width:max-content;animation:slide 24s linear infinite}
+  .mq__track span{font-family:'Oswald';font-weight:700;font-size:24px;letter-spacing:.05em;text-transform:uppercase;color:#000;padding:0;display:flex;align-items:center;white-space:nowrap}
+  .mq__track span::before{content:"✦";padding:0 24px;font-size:15px}
   @keyframes slide{to{transform:translateX(-50%)}}
 
   /* ---------- section heads ---------- */
-  .sec{padding:90px 0}
-  .ph{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:44px;flex-wrap:wrap}
-  .ph .ttl{display:flex;flex-direction:column;gap:8px}
-  .ph .ey{color:var(--orange);font-family:'Oswald';font-weight:700;letter-spacing:3px;text-transform:uppercase;font-size:16px;display:flex;align-items:center;gap:12px}
-  .ph .ey .idx{color:var(--muted)}
-  .ph h2{font-family:'Oswald';font-size:clamp(40px,7vw,82px);font-weight:900;text-transform:uppercase;line-height:.88}
-  .ph .lead{color:var(--muted);font-size:16px;line-height:1.6;max-width:340px}
+  section{border-bottom:2px solid var(--ink)}
+  .sec{padding:80px 0}
+  .shead{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:8px;flex-wrap:wrap}
+  .shead h2{font-family:'Oswald';font-weight:700;font-size:clamp(34px,5.4vw,76px);line-height:.9;text-transform:uppercase;letter-spacing:-.01em}
+  .shead .idx{font-family:'Oswald';font-weight:600;font-size:14px;letter-spacing:.2em;color:var(--orange);margin-bottom:14px;display:block}
+  .shead .lead{font-family:'Rubik';color:var(--muted);font-size:15px;line-height:1.6;max-width:330px}
 
-  /* ---------- programs ---------- */
-  .progs{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-  .prog{background:var(--panel);border:1.5px solid var(--line);padding:30px 26px 28px;position:relative;overflow:hidden;transition:.3s;cursor:default}
-  .prog::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--orange);transform:scaleY(0);transform-origin:bottom;transition:transform .35s cubic-bezier(.2,.7,.2,1)}
-  .prog:hover{transform:translateY(-8px);border-color:var(--line-2);background:var(--panel-2)}
+  /* ---------- programs (bold index list) ---------- */
+  .prog-list{margin-top:46px;border-top:2px solid var(--ink)}
+  .prog{display:grid;grid-template-columns:90px 1fr auto;align-items:center;gap:20px;padding:26px 0;border-bottom:1px solid var(--line);position:relative;cursor:default;transition:padding .25s,background .25s}
+  .prog::before{content:"";position:absolute;left:-28px;right:-28px;top:0;bottom:0;background:var(--orange);transform:scaleY(0);transform-origin:bottom;transition:transform .3s cubic-bezier(.5,0,.1,1);z-index:0}
+  .prog>*{position:relative;z-index:1}
+  .prog:hover{padding-left:24px}
   .prog:hover::before{transform:scaleY(1)}
-  .prog .pic{width:50px;height:50px;background:rgba(249,115,22,.14);display:flex;align-items:center;justify-content:center;margin-bottom:22px;clip-path:polygon(8% 0,100% 0,92% 100%,0 100%)}
-  .prog .pic svg{width:26px;height:26px;stroke:var(--orange);stroke-width:1.8;fill:none}
-  .prog h3{font-family:'Oswald';font-size:26px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
-  .prog p{color:var(--muted);font-size:14.5px;line-height:1.6}
-  .prog .tag-sm{margin-top:18px;font-family:'Oswald';font-weight:700;font-size:13px;letter-spacing:1px;text-transform:uppercase;color:var(--green)}
+  .prog:hover *{color:#000 !important}
+  .prog .pn{font-family:'Oswald';font-weight:700;font-size:24px;color:var(--faint)}
+  .prog .pname{font-family:'Oswald';font-weight:700;font-size:clamp(24px,3.4vw,44px);text-transform:uppercase;line-height:.95}
+  .prog .pmeta{font-family:'Oswald';font-weight:500;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-align:right;white-space:nowrap}
 
-  /* ---------- trainers ---------- */
-  .trainers .sec{padding-top:0}
-  .tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-  .trainer{position:relative;overflow:hidden;border:1.5px solid var(--line);background:var(--panel);transition:.3s}
-  .trainer:hover{border-color:var(--orange);transform:translateY(-6px)}
-  .trainer .ph-img{height:440px;position:relative;background:linear-gradient(165deg,#262b27,#101311);overflow:hidden}
-  .trainer .tphoto{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 22%;z-index:0;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
-  .trainer:hover .tphoto{transform:scale(1.05)}
-  .trainer .ph-img::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(11,13,12,.42) 0%,transparent 18%,transparent 82%,rgba(11,13,12,.28) 100%)}
-  .trainer .silh{position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:160px;height:200px;color:rgba(255,255,255,.10);z-index:0}
-  .trainer .num{position:absolute;top:14px;left:16px;z-index:2;font-family:'Oswald';font-weight:900;font-size:34px;color:rgba(255,255,255,.55);text-shadow:0 2px 8px rgba(0,0,0,.5)}
-  .trainer .spec{position:absolute;top:16px;right:16px;z-index:2;background:var(--orange);color:#0b0d0c;font-family:'Oswald';font-weight:800;font-size:12.5px;letter-spacing:1px;text-transform:uppercase;padding:5px 12px;clip-path:polygon(6% 0,100% 0,94% 100%,0 100%)}
-  .trainer .tinfo{padding:22px 24px 26px;border-top:1.5px solid var(--line)}
-  .trainer h3{font-family:'Oswald';font-size:27px;font-weight:800;text-transform:uppercase;letter-spacing:.5px}
-  .trainer .role{color:var(--muted);font-size:14px;margin-top:3px}
-  .trainer .exp{display:flex;gap:18px;margin-top:16px;padding-top:16px;border-top:1px solid var(--line)}
-  .trainer .exp b{font-family:'Oswald';font-size:22px;font-weight:900;color:var(--orange);display:block;line-height:1}
-  .trainer .exp span{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
+  /* ---------- trainers (roster) ---------- */
+  .tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:46px;border:1px solid var(--line);border-bottom:none}
+  .trainer{border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .trainer:last-child{border-right:none}
+  .trainer .im{position:relative;aspect-ratio:1/1.12;overflow:hidden;background:#111;border-bottom:1px solid var(--line)}
+  .trainer .im img{width:100%;height:100%;object-fit:cover;object-position:center 18%;filter:grayscale(.55) contrast(1.04);transition:filter .4s,transform .6s cubic-bezier(.2,.7,.2,1)}
+  .trainer:hover .im img{filter:none;transform:scale(1.04)}
+  .trainer .im .num{position:absolute;top:12px;left:14px;font-family:'Oswald';font-weight:900;font-size:40px;color:var(--ink);mix-blend-mode:difference}
+  .trainer .im .spec{position:absolute;bottom:0;left:0;background:var(--orange);color:#000;font-family:'Oswald';font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;padding:6px 14px}
+  .trainer .ti{padding:22px 22px 26px}
+  .trainer h3{font-family:'Oswald';font-weight:700;font-size:26px;text-transform:uppercase}
+  .trainer .role{font-family:'Rubik';font-size:13px;color:var(--muted);margin-top:4px}
+  .trainer .exp{display:flex;gap:24px;margin-top:18px;padding-top:16px;border-top:1px solid var(--line)}
+  .trainer .exp b{font-family:'Oswald';font-weight:700;font-size:24px;color:var(--orange);display:block;line-height:1}
+  .trainer .exp span{font-family:'Oswald';font-weight:500;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
 
-  /* ---------- showcase (gym photo) ---------- */
-  .showcase{position:relative;min-height:540px;display:flex;align-items:center;overflow:hidden;
-    background:#0b0d0c url('gym-wide.webp') center/cover no-repeat;background-attachment:fixed;
-    border-top:1.5px solid var(--line);border-bottom:1.5px solid var(--line)}
-  .showcase .sc-overlay{position:absolute;inset:0;background:linear-gradient(90deg,rgba(11,13,12,.94) 0%,rgba(11,13,12,.7) 48%,rgba(11,13,12,.4) 100%)}
-  .sc-inner{position:relative;z-index:1;padding:90px 28px}
-  .showcase .ey{color:var(--orange);font-family:'Oswald';font-weight:700;letter-spacing:3px;text-transform:uppercase;font-size:16px}
-  .showcase h2{font-family:'Oswald';font-weight:900;font-size:clamp(38px,6vw,78px);text-transform:uppercase;line-height:.9;margin:12px 0 16px;max-width:780px}
-  .showcase h2 .o{color:transparent;-webkit-text-stroke:2px var(--orange)}
-  .showcase p{color:#c9cec8;font-size:17px;line-height:1.6;max-width:460px;margin-bottom:26px}
-  .sc-stats{display:flex;gap:34px;flex-wrap:wrap}
-  .sc-stats .n{font-family:'Oswald';font-weight:900;font-size:40px;line-height:1;color:var(--orange)}
-  .sc-stats .l{font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-top:4px}
+  /* ---------- showcase ---------- */
+  .showcase{position:relative;min-height:560px;display:flex;align-items:flex-end;overflow:hidden;
+    background:var(--black) url('gym-wide.webp') center/cover no-repeat;background-attachment:fixed}
+  .showcase::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,6,5,.4),rgba(5,6,5,.85))}
+  .showcase .wrap{position:relative;z-index:1;padding:70px 28px}
+  .showcase .big{font-family:'Oswald';font-weight:700;font-size:clamp(64px,13vw,190px);line-height:.82;text-transform:uppercase;letter-spacing:-.01em}
+  .showcase .big .o{color:var(--orange)}
+  .showcase p{font-family:'Rubik';color:#d7dad4;font-size:16px;line-height:1.6;max-width:460px;margin:22px 0 28px}
+  .sc-stats{display:flex;gap:0;border-top:2px solid var(--ink);max-width:640px}
+  .sc-stats div{flex:1;padding:18px 16px 0 0;border-right:1px solid var(--line2)}
+  .sc-stats div:last-child{border-right:none}
+  .sc-stats .n{font-family:'Oswald';font-weight:700;font-size:clamp(26px,3vw,40px);color:var(--orange);line-height:1}
+  .sc-stats .l{font-family:'Oswald';font-weight:500;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#c7cac4;margin-top:6px}
 
   /* ---------- plans ---------- */
-  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-  .plan{background:var(--panel);border:1.5px solid var(--line);padding:34px 30px;transition:.25s;position:relative}
-  .plan:hover{transform:translateY(-8px);border-color:var(--orange)}
-  .plan.hot{background:linear-gradient(175deg,#241a0f,#141816);border-color:var(--orange)}
-  .plan .name{font-family:'Oswald';font-size:24px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--muted)}
-  .plan.hot .name{color:var(--orange)}
-  .plan .price{font-family:'Oswald';font-size:62px;font-weight:900;line-height:.9;margin:12px 0 4px}
-  .plan .price small{font-size:17px;color:var(--muted);font-weight:500;font-family:'Rubik'}
-  .plan ul{list-style:none;margin:24px 0;display:flex;flex-direction:column;gap:13px}
-  .plan li{display:flex;align-items:center;gap:11px;font-size:15px;color:#d4d8d4}
-  .plan li svg{width:19px;height:19px;stroke:var(--green);flex:none}
-  .plan .badge{position:absolute;top:-14px;right:24px;background:var(--orange);color:#0b0d0c;font-family:'Oswald';font-size:13px;font-weight:800;letter-spacing:1px;padding:5px 14px;text-transform:uppercase}
-  .plan .pbtn{display:block;width:100%;text-align:center;font-family:'Oswald';font-weight:800;font-size:18px;text-transform:uppercase;letter-spacing:1px;padding:14px;cursor:pointer;text-decoration:none;transition:.2s}
-  .plan .pbtn.solid{background:var(--orange);color:#0b0d0c}
-  .plan .pbtn.outline{border:1.5px solid var(--line-2);color:#fff;background:transparent}
+  .plans-grid{display:grid;grid-template-columns:repeat(3,1fr);margin-top:46px;border:1px solid var(--line)}
+  .plan{padding:38px 30px;border-right:1px solid var(--line);display:flex;flex-direction:column;transition:.2s}
+  .plan:last-child{border-right:none}
+  .plan.hot{background:var(--orange);color:#000}
+  .plan .pname{font-family:'Oswald';font-weight:700;font-size:20px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+  .plan.hot .pname{color:#000}
+  .plan .badge{font-family:'Oswald';font-weight:700;font-size:12px;letter-spacing:.1em;text-transform:uppercase;background:#000;color:var(--orange);padding:4px 12px;align-self:flex-start;margin-bottom:14px}
+  .plan .price{font-family:'Oswald';font-weight:700;font-size:clamp(44px,5vw,68px);line-height:.9;margin:14px 0 4px}
+  .plan .price small{font-family:'Rubik';font-size:15px;font-weight:400;color:var(--muted)}
+  .plan.hot .price small{color:#3a2a10}
+  .plan ul{list-style:none;margin:24px 0;display:flex;flex-direction:column;gap:12px;flex:1}
+  .plan li{display:flex;align-items:center;gap:11px;font-family:'Rubik';font-size:14.5px}
+  .plan li svg{width:18px;height:18px;stroke:var(--green);flex:none}
+  .plan.hot li svg{stroke:#000}
+  .plan .pbtn{display:block;text-align:center;font-family:'Oswald';font-weight:700;font-size:16px;letter-spacing:.06em;text-transform:uppercase;padding:14px;cursor:pointer;transition:.18s}
+  .plan .pbtn.solid{background:var(--orange);color:#000}
+  .plan.hot .pbtn.solid{background:#000;color:var(--orange)}
+  .plan .pbtn.outline{box-shadow:inset 0 0 0 2px var(--line2);color:var(--ink)}
   .plan .pbtn.solid:hover{background:var(--green)}
-  .plan .pbtn.outline:hover{border-color:var(--orange);color:var(--orange)}
-  .plan .note{text-align:center;color:var(--muted);font-size:12.5px;margin-top:14px}
+  .plan .pbtn.outline:hover{background:var(--ink);color:#000}
+  .plan .note{font-family:'Oswald';font-weight:500;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-top:14px;text-align:center}
+  .plan.hot .note{color:#3a2a10}
 
   /* ---------- results band ---------- */
-  .band{background:var(--orange);color:#0b0d0c;overflow:hidden;position:relative}
-  .band::before{content:"";position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");mix-blend-mode:overlay;opacity:.25}
-  .band .wrap{padding:54px 28px;display:grid;grid-template-columns:repeat(4,1fr);gap:24px;position:relative;z-index:1}
-  .band .b{border-left:3px solid rgba(11,13,12,.25);padding-left:20px}
-  .band .b .n{font-family:'Oswald';font-weight:900;font-size:clamp(44px,5.5vw,72px);line-height:.85}
-  .band .b .l{font-family:'Oswald';font-weight:700;text-transform:uppercase;letter-spacing:1px;font-size:15px;margin-top:8px}
+  .band{background:var(--ink);color:#000;border-bottom:2px solid var(--ink)}
+  .band .wrap{display:grid;grid-template-columns:repeat(4,1fr);padding:0}
+  .band .b{padding:40px 24px;border-right:2px solid var(--black)}
+  .band .b:last-child{border-right:none}
+  .band .n{font-family:'Oswald';font-weight:700;font-size:clamp(36px,4.6vw,64px);line-height:.9}
+  .band .l{font-family:'Oswald';font-weight:500;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#444;margin-top:8px}
 
-  /* ---------- final CTA ---------- */
-  .cta{position:relative;overflow:hidden;padding:96px 0;text-align:center;background:radial-gradient(120% 120% at 50% 0%,#1b211d,#0b0d0c)}
-  .cta::before{content:"FORGE";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Oswald';font-weight:900;font-size:clamp(160px,30vw,420px);color:rgba(255,255,255,.025);letter-spacing:-10px;white-space:nowrap;z-index:0}
-  .cta .inner{position:relative;z-index:1}
-  .cta .ey{color:var(--orange);font-family:'Oswald';font-weight:700;letter-spacing:3px;text-transform:uppercase;font-size:16px}
-  .cta h2{font-family:'Oswald';font-weight:900;font-size:clamp(46px,8vw,104px);text-transform:uppercase;line-height:.9;margin:14px 0 18px}
-  .cta h2 .o{color:transparent;-webkit-text-stroke:2px var(--orange)}
-  .cta p{color:var(--muted);font-size:17px;max-width:480px;margin:0 auto 32px;line-height:1.6}
-  .cta-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  /* ---------- cta ---------- */
+  .cta{position:relative;background:var(--orange);color:#000;text-align:left;overflow:hidden}
+  .cta .wrap{padding:90px 28px}
+  .cta .kick{color:#000}
+  .cta h2{font-family:'Oswald';font-weight:700;font-size:clamp(44px,8.5vw,128px);line-height:.84;text-transform:uppercase;letter-spacing:-.01em;margin:14px 0 22px}
+  .cta p{font-family:'Rubik';font-size:17px;max-width:480px;line-height:1.55;margin-bottom:30px;color:#1a1208}
+  .cta .btn{background:#000;color:var(--orange)}
+  .cta .btn:hover{background:var(--ink);color:#000}
+  .cta .btn.ghost{background:transparent;color:#000;box-shadow:inset 0 0 0 2px #000}
+  .cta .btn.ghost:hover{background:#000;color:var(--orange)}
 
   /* ---------- footer ---------- */
-  footer{border-top:1.5px solid var(--line);background:#090b0a}
-  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:32px;padding:64px 0 40px}
-  .foot-brand .logo{margin-bottom:18px}
-  .foot-brand p{color:var(--muted);font-size:14.5px;line-height:1.6;max-width:280px}
-  .foot-col h4{font-family:'Oswald';font-weight:800;text-transform:uppercase;letter-spacing:1px;font-size:16px;color:var(--muted);margin-bottom:16px}
-  .foot-col a{display:block;color:#c4c9c4;text-decoration:none;font-size:15px;padding:6px 0;transition:.2s}
-  .foot-col a:hover{color:var(--orange);transform:translateX(4px)}
+  footer{border-bottom:none;background:var(--black)}
+  .foot-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:36px;padding:56px 0 38px}
+  .foot-brand .logo{margin-bottom:16px}
+  .foot-brand p{font-family:'Rubik';color:var(--muted);font-size:14px;line-height:1.6;max-width:280px}
+  .foot-col h4{font-family:'Oswald';font-weight:600;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);margin-bottom:16px}
+  .foot-col a{display:block;font-family:'Rubik';color:var(--muted);font-size:14px;padding:5px 0;transition:.18s}
+  .foot-col a:hover{color:var(--orange)}
   .foot-bottom{border-top:1px solid var(--line);padding:22px 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px}
-  .foot-bottom .cr{color:var(--muted);font-size:13px}
-  .socials{display:flex;gap:10px}
-  .socials a{width:40px;height:40px;border:1.5px solid var(--line);display:flex;align-items:center;justify-content:center;transition:.2s;clip-path:polygon(8% 0,100% 0,92% 100%,0 100%)}
-  .socials a:hover{background:var(--orange);border-color:var(--orange)}
-  .socials a:hover svg{stroke:#0b0d0c}
-  .socials svg{width:18px;height:18px;stroke:var(--muted);transition:.2s}
+  .foot-bottom .cr{font-family:'Oswald';font-weight:500;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--faint)}
+  .socials{display:flex;gap:8px}
+  .socials a{width:40px;height:40px;display:flex;align-items:center;justify-content:center;box-shadow:inset 0 0 0 1px var(--line);transition:.18s}
+  .socials a:hover{background:var(--orange)}
+  .socials a:hover svg{stroke:#000}
+  .socials svg{width:18px;height:18px;stroke:var(--muted);transition:.18s}
 
-  .demo-tag{position:fixed;top:12px;left:12px;z-index:99;background:rgba(249,115,22,.14);border:1px solid var(--orange);color:var(--orange);font-size:11px;font-weight:700;padding:6px 12px;border-radius:4px}
-
-  @media(max-width:1040px){.progs{grid-template-columns:repeat(2,1fr)}.band .wrap{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:1040px){.band .wrap{grid-template-columns:repeat(2,1fr)}.band .b:nth-child(2){border-right:none}}
   @media(max-width:900px){
-    .hero-grid{grid-template-columns:1fr;gap:30px}.nav-links{display:none}
-    .nav-toggle{display:flex;margin-left:auto}.nav .nav-cta{display:none}
-    .mobile-menu{display:flex}.mobile-menu.open{max-height:440px;padding-bottom:22px}
-    .grid3,.tgrid{grid-template-columns:1fr}.hero-visual{height:340px}.hstats{flex-wrap:wrap;gap:18px}
+    .hero-grid{grid-template-columns:1fr}.hero-l{padding:46px 0 40px}.hero-r{border-left:none;border-top:2px solid var(--ink);min-height:420px}
+    .nav-links{display:none}.nav .btn{display:none}.nav-toggle{display:flex;margin-left:auto}
+    .mobile-menu{display:flex}.mobile-menu.open{max-height:360px}
+    .tgrid{grid-template-columns:1fr}.trainer{border-right:none}
+    .plans-grid{grid-template-columns:1fr}.plan{border-right:none;border-bottom:1px solid var(--line)}
     .foot-grid{grid-template-columns:1fr 1fr}.foot-brand{grid-column:1/-1}
-    .showcase{background-attachment:scroll;min-height:440px}.sc-inner{padding:64px 28px}
   }
-  @media(max-width:560px){.progs{grid-template-columns:1fr}.band .wrap{grid-template-columns:1fr}}
+  @media(max-width:560px){
+    .wrap{padding:0 20px}.hero-spec{flex-wrap:wrap}.hero-spec div{flex:1 0 40%;border-bottom:1px solid var(--line);padding-bottom:14px}
+    .band .wrap{grid-template-columns:1fr}.band .b{border-right:none;border-bottom:2px solid var(--black)}
+    .prog{grid-template-columns:54px 1fr}.prog .pmeta{display:none}
+    .sc-stats{flex-wrap:wrap}.sc-stats div{flex:1 0 45%}
+  }
 </style>
 </head>
 <body>
@@ -248,50 +226,45 @@
         <div class="nav-links">
           <a href="#programs">Направления</a><a href="#trainers">Тренеры</a><a href="#plans">Цены</a><a href="#join">Контакты</a>
         </div>
-        <a class="btn nav-cta" href="#join">Пробная тренировка</a>
+        <a class="btn" href="#join">Пробная</a>
         <button class="nav-toggle" id="navToggle" aria-label="Открыть меню" aria-expanded="false" aria-controls="mobileMenu"><span></span><span></span><span></span></button>
       </nav>
       <div class="mobile-menu" id="mobileMenu">
-        <a href="#programs">Направления</a>
-        <a href="#trainers">Тренеры</a>
-        <a href="#plans">Цены</a>
-        <a href="#join">Контакты</a>
-        <a class="btn mm-cta" href="#join">Пробная тренировка</a>
+        <a href="#programs">Направления</a><a href="#trainers">Тренеры</a><a href="#plans">Цены</a><a href="#join">Контакты</a>
       </div>
     </div>
   </div>
 
   <span id="top"></span>
-  <section class="hero">
-    <div class="stripe"></div>
+  <!-- HERO -->
+  <header class="hero">
     <div class="wrap">
       <div class="hero-grid">
-        <div>
-          <span class="tag rise">Фитнес-клуб в центре города</span>
-          <h1><span class="l1 rise"><span class="o">Фитнес</span>-клуб</span><br><span class="l2 rise">в <span class="g">центре</span> города</span></h1>
-          <p class="rise">Зал, групповые тренировки и персональные тренеры. Помесячная оплата без долгосрочного договора.</p>
-          <div class="hero-actions rise">
+        <div class="hero-l">
+          <span class="kick rise">[01] Фитнес-клуб в центре города</span>
+          <h1 style="margin-top:18px"><span class="rise"><span class="o">Фитнес</span></span><br><span class="rise" style="animation-delay:.1s">-клуб <span class="g">FORGE</span></span></h1>
+          <p class="rise" style="animation-delay:.2s">Зал, групповые тренировки и персональные тренеры. Помесячная оплата без долгосрочного договора.</p>
+          <div class="hero-actions rise" style="animation-delay:.28s">
             <a class="btn" href="#join">Записаться бесплатно</a>
-            <a class="ghost" href="#programs">Смотреть направления</a>
+            <a class="btn ghost" href="#programs">Направления</a>
           </div>
-          <div class="hstats rise">
+          <div class="hero-spec rise" style="animation-delay:.36s">
             <div><div class="n">2 400+</div><div class="l">участников</div></div>
             <div><div class="n">35</div><div class="l">тренеров</div></div>
             <div><div class="n">24/7</div><div class="l">доступ в зал</div></div>
           </div>
         </div>
-        <div class="hero-visual rise">
-          <img class="hv-img" src="gym-hero.webp" width="768" height="1376" decoding="async" fetchpriority="high" alt="Атлет со штангой в зале FORGE" onerror="this.onerror=null;this.src='gym-hero.png'">
-          <span class="num-bg">01</span>
-          <div class="vfloat a"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg></span><div><b>−8 КГ</b><span>в среднем за 3 мес</span></div></div>
-          <div class="vfloat b"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><div><b>24/7</b><span>доступ в зал круглосуточно</span></div></div>
+        <div class="hero-r rise" style="animation-delay:.16s">
+          <img src="gym-hero.webp" width="768" height="1376" decoding="async" fetchpriority="high" alt="Атлет со штангой в зале FORGE" onerror="this.onerror=null;this.src='gym-hero.png'">
+          <span class="num">01</span>
+          <div class="badge"><b>-8 КГ</b><span>в среднем за 3 мес</span></div>
         </div>
       </div>
     </div>
-  </section>
+  </header>
 
-  <!-- KINETIC MARQUEE -->
-  <div class="mq">
+  <!-- MARQUEE -->
+  <div class="mq" aria-hidden="true">
     <div class="mq__track">
       <span>Сила</span><span>Кардио</span><span>Кроссфит</span><span>Бокс</span><span>Йога</span><span>Бассейн</span>
       <span>Сила</span><span>Кардио</span><span>Кроссфит</span><span>Бокс</span><span>Йога</span><span>Бассейн</span>
@@ -301,98 +274,53 @@
   <!-- PROGRAMS -->
   <section id="programs">
     <div class="wrap sec">
-      <div class="ph reveal">
-        <div class="ttl">
-          <div class="ey"><span class="idx">[01]</span> Направления</div>
-          <h2>Направления<br>тренировок</h2>
-        </div>
-        <p class="lead">Шесть направлений: от первых тренировок до соревновательной подготовки. Доступны по одному абонементу.</p>
+      <div class="shead reveal">
+        <div><span class="idx">[02] Направления</span><h2>Выбери<br>формат</h2></div>
+        <p class="lead">Шесть направлений: от первых тренировок до соревновательной подготовки. Всё по одному абонементу.</p>
       </div>
-      <div class="progs">
-        <div class="prog reveal">
-          <div class="pic"><svg viewBox="0 0 24 24"><path d="M6 8v8M18 8v8M4 10v4M20 10v4M6 12h12"/></svg></div>
-          <h3>Силовой зал</h3>
-          <p>Свободные веса, силовые рамы и тренажёры. Индивидуальная программа.</p>
-          <div class="tag-sm">Набор массы · Сила</div>
-        </div>
-        <div class="prog reveal" style="transition-delay:.06s">
-          <div class="pic"><svg viewBox="0 0 24 24"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg></div>
-          <h3>Кроссфит</h3>
-          <p>Функциональные WOD-тренировки в группе под контролем тренера.</p>
-          <div class="tag-sm">Жиросжигание · Тонус</div>
-        </div>
-        <div class="prog reveal" style="transition-delay:.12s">
-          <div class="pic"><svg viewBox="0 0 24 24"><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/></svg></div>
-          <h3>Бокс / Единоборства</h3>
-          <p>Ринг, мешки и работа в парах. Техника и общая физподготовка.</p>
-          <div class="tag-sm">Координация · Кардио</div>
-        </div>
-        <div class="prog reveal" style="transition-delay:.18s">
-          <div class="pic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
-          <h3>Кардио-зона</h3>
-          <p>Беговые дорожки, эллипсоиды и гребные тренажёры с экранами.</p>
-          <div class="tag-sm">Выносливость</div>
-        </div>
-        <div class="prog reveal" style="transition-delay:.24s">
-          <div class="pic"><svg viewBox="0 0 24 24"><path d="M4 18c4-6 12-6 16 0M4 12c4-5 12-5 16 0M4 6c4-4 12-4 16 0"/></svg></div>
-          <h3>Йога / Стретчинг</h3>
-          <p>Гибкость и восстановление. Группы для любого уровня подготовки.</p>
-          <div class="tag-sm">Гибкость · Релакс</div>
-        </div>
-        <div class="prog reveal" style="transition-delay:.3s">
-          <div class="pic"><svg viewBox="0 0 24 24"><path d="M2 17c2 0 2 1.5 4 1.5S10 17 12 17s2 1.5 4 1.5S18 17 22 17M2 12c2 0 2 1.5 4 1.5S10 12 12 12s2 1.5 4 1.5S18 12 22 12"/><circle cx="8" cy="6" r="2"/></svg></div>
-          <h3>Бассейн</h3>
-          <p>25-метровые дорожки и групповая аквааэробика.</p>
-          <div class="tag-sm">Восстановление</div>
-        </div>
+      <div class="prog-list">
+        <div class="prog reveal"><div class="pn">01</div><div class="pname">Силовой зал</div><div class="pmeta">Набор массы · Сила</div></div>
+        <div class="prog reveal"><div class="pn">02</div><div class="pname">Кроссфит</div><div class="pmeta">Жиросжигание · Тонус</div></div>
+        <div class="prog reveal"><div class="pn">03</div><div class="pname">Бокс / Единоборства</div><div class="pmeta">Координация · Кардио</div></div>
+        <div class="prog reveal"><div class="pn">04</div><div class="pname">Кардио-зона</div><div class="pmeta">Выносливость</div></div>
+        <div class="prog reveal"><div class="pn">05</div><div class="pname">Йога / Стретчинг</div><div class="pmeta">Гибкость · Релакс</div></div>
+        <div class="prog reveal"><div class="pn">06</div><div class="pname">Бассейн</div><div class="pmeta">Восстановление</div></div>
       </div>
     </div>
   </section>
 
   <!-- TRAINERS -->
-  <section id="trainers" class="trainers">
+  <section id="trainers">
     <div class="wrap sec">
-      <div class="ph reveal">
-        <div class="ttl">
-          <div class="ey"><span class="idx">[02]</span> Команда</div>
-          <h2>Наши<br>тренеры</h2>
-        </div>
+      <div class="shead reveal">
+        <div><span class="idx">[03] Команда</span><h2>Тренеры</h2></div>
         <p class="lead">Сертифицированные тренеры составят программу с учётом вашего уровня и целей.</p>
       </div>
       <div class="tgrid">
         <div class="trainer reveal">
-          <div class="ph-img">
-            <svg class="silh" viewBox="0 0 64 80" fill="currentColor"><circle cx="32" cy="16" r="11"/><path d="M14 80c0-16 8-28 18-28s18 12 18 28z"/></svg>
-            <img class="tphoto" src="trainer-1.webp" width="768" height="1376" loading="lazy" decoding="async" alt="Артём Волков - силовой тренер" onerror="this.onerror=null;this.src='trainer-1.png'">
+          <div class="im">
+            <img src="trainer-1.webp" width="768" height="1376" loading="lazy" decoding="async" alt="Артём Волков - силовой тренер" onerror="this.onerror=null;this.src='trainer-1.png'">
             <span class="num">01</span><span class="spec">Сила</span>
           </div>
-          <div class="tinfo">
-            <h3>Артём Волков</h3>
-            <div class="role">Силовой тренинг · КМС по пауэрлифтингу</div>
+          <div class="ti"><h3>Артём Волков</h3><div class="role">Силовой тренинг · КМС по пауэрлифтингу</div>
             <div class="exp"><div><b>12</b><span>лет опыта</span></div><div><b>600+</b><span>учеников</span></div></div>
           </div>
         </div>
         <div class="trainer reveal" style="transition-delay:.08s">
-          <div class="ph-img">
-            <svg class="silh" viewBox="0 0 64 80" fill="currentColor"><circle cx="32" cy="16" r="11"/><path d="M14 80c0-16 8-28 18-28s18 12 18 28z"/></svg>
-            <img class="tphoto" src="trainer-2.webp" width="768" height="1376" loading="lazy" decoding="async" alt="Мария Снегирёва - кроссфит-тренер" onerror="this.onerror=null;this.src='trainer-2.png'">
+          <div class="im">
+            <img src="trainer-2.webp" width="768" height="1376" loading="lazy" decoding="async" alt="Мария Снегирёва - кроссфит-тренер" onerror="this.onerror=null;this.src='trainer-2.png'">
             <span class="num">02</span><span class="spec">Кроссфит</span>
           </div>
-          <div class="tinfo">
-            <h3>Мария Снегирёва</h3>
-            <div class="role">Кроссфит · Функциональный тренинг</div>
+          <div class="ti"><h3>Мария Снегирёва</h3><div class="role">Кроссфит · Функциональный тренинг</div>
             <div class="exp"><div><b>8</b><span>лет опыта</span></div><div><b>L-2</b><span>сертификат</span></div></div>
           </div>
         </div>
         <div class="trainer reveal" style="transition-delay:.16s">
-          <div class="ph-img">
-            <svg class="silh" viewBox="0 0 64 80" fill="currentColor"><circle cx="32" cy="16" r="11"/><path d="M14 80c0-16 8-28 18-28s18 12 18 28z"/></svg>
-            <img class="tphoto" src="trainer-3.webp" width="768" height="1376" loading="lazy" decoding="async" alt="Денис Кравцов - тренер по боксу" onerror="this.onerror=null;this.src='trainer-3.png'">
+          <div class="im">
+            <img src="trainer-3.webp" width="768" height="1376" loading="lazy" decoding="async" alt="Денис Кравцов - тренер по боксу" onerror="this.onerror=null;this.src='trainer-3.png'">
             <span class="num">03</span><span class="spec">Бокс</span>
           </div>
-          <div class="tinfo">
-            <h3>Денис Кравцов</h3>
-            <div class="role">Бокс · Единоборства · ОФП</div>
+          <div class="ti"><h3>Денис Кравцов</h3><div class="role">Бокс · Единоборства · ОФП</div>
             <div class="exp"><div><b>15</b><span>лет опыта</span></div><div><b>МС</b><span>по боксу</span></div></div>
           </div>
         </div>
@@ -402,10 +330,9 @@
 
   <!-- SHOWCASE -->
   <section class="showcase" aria-label="Зал FORGE">
-    <div class="sc-overlay"></div>
-    <div class="wrap sc-inner">
-      <div class="ey reveal">Наш зал</div>
-      <h2 class="reveal">Зал площадью<br>1 500 <span class="o">м²</span></h2>
+    <div class="wrap">
+      <span class="kick reveal" style="color:var(--orange)">Наш зал</span>
+      <div class="big reveal">1 500 <span class="o">М²</span></div>
       <p class="reveal">Два этажа: силовая и функциональная зоны, ринг, кардиозона и бассейн. Доступ 24/7 на тарифе «Про».</p>
       <div class="sc-stats reveal">
         <div><div class="n">2</div><div class="l">этажа</div></div>
@@ -418,16 +345,13 @@
   <!-- PLANS -->
   <section id="plans">
     <div class="wrap sec">
-      <div class="ph reveal">
-        <div class="ttl">
-          <div class="ey"><span class="idx">[03]</span> Тарифы</div>
-          <h2>Тарифы<br>и абонементы</h2>
-        </div>
+      <div class="shead reveal">
+        <div><span class="idx">[04] Тарифы</span><h2>Абонементы</h2></div>
         <p class="lead">Без скрытых комиссий. Заморозка абонемента доступна в любой момент.</p>
       </div>
-      <div class="grid3">
+      <div class="plans-grid">
         <div class="plan reveal">
-          <div class="name">Старт</div>
+          <div class="pname">Старт</div>
           <div class="price">1 990<small> ₽/мес</small></div>
           <ul>
             <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg>Доступ в зал</li>
@@ -439,7 +363,7 @@
         </div>
         <div class="plan hot reveal" style="transition-delay:.08s">
           <span class="badge">Популярный</span>
-          <div class="name">Про</div>
+          <div class="pname">Про</div>
           <div class="price">3 490<small> ₽/мес</small></div>
           <ul>
             <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg>Всё из «Старт»</li>
@@ -451,7 +375,7 @@
           <div class="note">Популярный тариф</div>
         </div>
         <div class="plan reveal" style="transition-delay:.16s">
-          <div class="name">Премиум</div>
+          <div class="pname">Премиум</div>
           <div class="price">5 990<small> ₽/мес</small></div>
           <ul>
             <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg>Всё из «Про»</li>
@@ -469,21 +393,21 @@
   <div class="band reveal">
     <div class="wrap">
       <div class="b"><div class="n">2 400+</div><div class="l">активных участников</div></div>
-      <div class="b"><div class="n">−8 кг</div><div class="l">в среднем за 3 месяца</div></div>
+      <div class="b"><div class="n">-8 кг</div><div class="l">в среднем за 3 месяца</div></div>
       <div class="b"><div class="n">94%</div><div class="l">продлевают абонемент</div></div>
       <div class="b"><div class="n">1 500 м²</div><div class="l">площадь клуба</div></div>
     </div>
   </div>
 
-  <!-- FINAL CTA -->
+  <!-- CTA -->
   <section id="join" class="cta">
-    <div class="wrap inner">
-      <div class="ey reveal">Первая тренировка бесплатно</div>
-      <h2 class="reveal">Запишитесь на<br>пробную <span class="o">тренировку</span></h2>
+    <div class="wrap">
+      <span class="kick reveal">Первая тренировка бесплатно</span>
+      <h2 class="reveal">Хватит<br>откладывать</h2>
       <p class="reveal">Бесплатная пробная тренировка с персональным тренером. Покажем зал и составим план занятий.</p>
-      <div class="cta-actions reveal">
-        <a class="btn" href="https://t.me/wintdVS" target="_blank" rel="noopener">Записаться бесплатно</a>
-        <a class="ghost" href="https://t.me/wintdVS" target="_blank" rel="noopener">Telegram @wintdVS</a>
+      <div class="hero-actions reveal">
+        <a class="btn" href="https://t.me/wintdVS" target="_blank" rel="noopener">Записаться</a>
+        <a class="btn ghost" href="https://t.me/wintdVS" target="_blank" rel="noopener">Telegram @wintdVS</a>
       </div>
     </div>
   </section>
@@ -496,57 +420,35 @@
           <a class="logo" href="#top"><span class="m"><svg viewBox="0 0 24 24" fill="none"><path d="M6 8v8M18 8v8M4 10v4M20 10v4M6 12h12"/></svg></span>FORGE</a>
           <p>Фитнес-клуб в центре города. Зал, групповые и персональные тренировки.</p>
         </div>
-        <div class="foot-col">
-          <h4>Клуб</h4>
-          <a href="#programs">Направления</a>
-          <a href="#trainers">Тренеры</a>
-          <a href="#plans">Цены</a>
-        </div>
-        <div class="foot-col">
-          <h4>Контакты</h4>
-          <a href="#">ул. Примерная, 1</a>
-          <a href="https://t.me/wintdVS" target="_blank" rel="noopener">Telegram @wintdVS</a>
-          <a href="mailto:foydaliuz265@gmail.com">foydaliuz265@gmail.com</a>
-        </div>
-        <div class="foot-col">
-          <h4>График</h4>
-          <a href="#">Пн-Пт · 06:00-24:00</a>
-          <a href="#">Сб-Вс · 08:00-23:00</a>
-          <a href="#">Зал 24/7 по «Про»</a>
-        </div>
+        <div class="foot-col"><h4>Клуб</h4><a href="#programs">Направления</a><a href="#trainers">Тренеры</a><a href="#plans">Цены</a></div>
+        <div class="foot-col"><h4>Контакты</h4><a href="#">ул. Примерная, 1</a><a href="https://t.me/wintdVS" target="_blank" rel="noopener">Telegram @wintdVS</a><a href="mailto:foydaliuz265@gmail.com">foydaliuz265@gmail.com</a></div>
+        <div class="foot-col"><h4>График</h4><a href="#">Пн-Пт · 06:00-24:00</a><a href="#">Сб-Вс · 08:00-23:00</a><a href="#">Зал 24/7 по «Про»</a></div>
       </div>
       <div class="foot-bottom">
         <span class="cr">© 2026 FORGE · демо для портфолио</span>
         <div class="socials">
-          <a href="#"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
-          <a href="#"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4z"/></svg></a>
-          <a href="#"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M23 7l-7 5 7 5V7zM1 5h15v14H1z"/></svg></a>
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+          <a href="https://t.me/wintdVS" target="_blank" rel="noopener" aria-label="Telegram"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4z"/></svg></a>
+          <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M23 7l-7 5 7 5V7zM1 5h15v14H1z"/></svg></a>
         </div>
       </div>
     </div>
   </footer>
 
   <script>
-    // scroll reveal
     const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.14});
     document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
-    // seamless marquee: clone content to always exceed viewport (no gap on wide screens)
+    // seamless marquee
     {
-      const mq=[...document.querySelectorAll('.marquee__track, .mq__track')].map(t=>({t,unit:t.innerHTML}));
+      const mq=[...document.querySelectorAll('.mq__track')].map(t=>({t,unit:t.innerHTML}));
       const fill=()=>mq.forEach(({t,unit})=>{let b=unit,g=0;t.innerHTML=b;while(t.scrollWidth<window.innerWidth&&g++<24){b+=unit;t.innerHTML=b}t.innerHTML=b+b});
       fill(); let rt; window.addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(fill,200)});
     }
-    // sticky nav border
-    const nb=document.getElementById('navbar');
-    const onScroll=()=>nb.classList.toggle('stuck',window.scrollY>20);
-    onScroll();window.addEventListener('scroll',onScroll,{passive:true});
 
     // mobile menu
-    const tg=document.getElementById('navToggle'), mm=document.getElementById('mobileMenu');
-    const setMenu=open=>{tg.classList.toggle('active',open);mm.classList.toggle('open',open);
-      nb.classList.toggle('menu-open',open);tg.setAttribute('aria-expanded',open);
-      tg.setAttribute('aria-label',open?'Закрыть меню':'Открыть меню')};
+    const nb=document.getElementById('navbar'), tg=document.getElementById('navToggle'), mm=document.getElementById('mobileMenu');
+    const setMenu=o=>{tg.classList.toggle('active',o);mm.classList.toggle('open',o);tg.setAttribute('aria-expanded',o)};
     tg.addEventListener('click',()=>setMenu(!mm.classList.contains('open')));
     mm.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>setMenu(false)));
     window.addEventListener('keydown',e=>{if(e.key==='Escape')setMenu(false)});
